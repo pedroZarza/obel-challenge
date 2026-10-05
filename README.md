@@ -172,10 +172,11 @@ Cada capa está dividida por recurso (`roles` y `users`). Lo que comparten ambos
 
 ## Documentación
 
-La documentación Swagger UI está disponible en `/docs`. Incluye los parámetros, cuerpos de solicitud, respuestas y configuración de autenticación.
+La documentación Swagger UI está disponible en `/docs`.
 
+- **Swagger UI:** [https://obel-challenge.vercel.app/docs/](https://obel-challenge.vercel.app/docs/)
 ## Producción
 
-- **API:** pendiente de deploy
-- **Swagger UI:** pendiente de deploy (`/docs`)
+- **API:** [https://obel-challenge.vercel.app](https://obel-challenge.vercel.app)
+
 
