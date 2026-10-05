@@ -26,12 +26,19 @@ function redirectBareDocs(req: Request, res: Response, next: NextFunction): void
     next();
 }
 
+const SWAGGER_CDN = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5";
+
 app.use(
     "/docs",
     redirectBareDocs,
     serve,
     setup(openApiSpec, {
         customSiteTitle: "Obel Challenge API",
+        customCssUrl: `${SWAGGER_CDN}/swagger-ui.css`,
+        customJs: [
+            `${SWAGGER_CDN}/swagger-ui-bundle.js`,
+            `${SWAGGER_CDN}/swagger-ui-standalone-preset.js`,
+        ],
         swaggerOptions: { persistAuthorization: true },
     }),
 );
