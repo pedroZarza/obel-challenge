@@ -1,0 +1,33 @@
+{
+  "name": "obel-challenge",
+  "version": "1.0.0",
+  "description": "Desafío técnico Obel",
+  "homepage": "https://github.com/pedroZarza/obel-challenge#readme",
+  "bugs": {
+    "url": "https://github.com/pedroZarza/obel-challenge/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroZarza/obel-challenge.git"
+  },
+  "license": "ISC",
+  "author": "Pedro Zarza",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "tsx watch ./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "morgan": "^1.12.1",
+    "zod": "^4.6.5"
+  }
+}
