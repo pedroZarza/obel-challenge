@@ -20,10 +20,14 @@ PORT=3030
 API_KEY=tu-api-key
 ```
 
-| Variable | Obligatorio | Default | Descripción |
-| --- | --- | --- | --- |
-| `PORT` | No | `3000` | Puerto HTTP |
-| `API_KEY` | Sí | — | Token que debe enviarse en el header `Authorization` (sin prefijo `Bearer`) |
+
+| Variable  | Obligatorio | Default | Descripción                                                                 |
+| --------- | ----------- | ------- | --------------------------------------------------------------------------- |
+| `PORT`    | No          | `3000`  | Puerto HTTP                                                                 |
+| `API_KEY` | Sí          | —       | Token que debe enviarse en el header `Authorization` (sin prefijo `Bearer`) |
+
+
+
 
 ## Cómo correrlo
 
@@ -32,6 +36,8 @@ Instalar las dependencias:
 ```bash
 npm install
 ```
+
+
 
 ### Desarrollo
 
@@ -59,10 +65,14 @@ Para conservar los datos entre reinicios, modificar `src/data/config/database.ts
 ```ts
 export const db = new DatabaseSync(":memory:");
 ```
+
 por:
+
 ```ts
 export const db = new DatabaseSync("database.sqlite");
 ```
+
+
 
 ## Tests
 
@@ -80,17 +90,21 @@ Todas las rutas de `/roles` y `/users` requieren el header `Authorization` con e
 Authorization: tu-api-key
 ```
 
+
+
 ## Datos iniciales
 
 Al iniciar la aplicación se precargan únicamente estos usuarios:
 
-| id | username |
-| --- | --- |
-| 1 | Pedro |
-| 2 | Alberto |
-| 3 | Ana |
-| 4 | Juan |
-| 5 | Lucía |
+
+| id  | username |
+| --- | -------- |
+| 1   | Pedro    |
+| 2   | Alberto  |
+| 3   | Ana      |
+| 4   | Juan     |
+| 5   | Lucía    |
+
 
 Los roles se crean mediante `POST /roles` y se asignan mediante `PUT /users/:userId/roles/:roleId`.
 
@@ -104,38 +118,57 @@ Los valores de `type` y `scope` fueron definidos para este challenge. Son metada
 
 Clasifica el origen del rol.
 
-| Valor | Significado |
-| --- | --- |
-| `system` | Rol propio de la plataforma, por ejemplo `admin` |
+
+| Valor    | Significado                                                       |
+| -------- | ----------------------------------------------------------------- |
+| `system` | Rol propio de la plataforma, por ejemplo `admin`                  |
 | `custom` | Rol definido para un caso de uso particular, por ejemplo `viewer` |
+
+
+
 
 ### `scope`
 
 Indica el ámbito al que aplica el rol.
 
-| Valor | Significado |
-| --- | --- |
-| `global` | Toda la plataforma |
-| `users` | Usuarios y asignaciones |
-| `content` | Contenido |
-| `reports` | Reportes y consultas |
+
+| Valor     | Significado             |
+| --------- | ----------------------- |
+| `global`  | Toda la plataforma      |
+| `users`   | Usuarios y asignaciones |
+| `content` | Contenido               |
+| `reports` | Reportes y consultas    |
+
 
 Cuando se envía un valor de `type` o `scope`, debe pertenecer a su enumeración. Los valores no permitidos generan una respuesta `400 Bad Request`.
 
 ## Endpoints
 
-Todas las rutas de esta tabla requieren autenticación.
+[Colección de Postman](./obel-challenge.postman_collection.json)
 
-| Método | Ruta | Descripción |
-| --- | --- | --- |
-| `GET` | `/users` | Listar usuarios con sus roles |
-| `GET` | `/users/:userId/roles` | Listar los roles de un usuario |
-| `PUT` | `/users/:userId/roles/:roleId` | Asignar un rol a un usuario |
-| `DELETE` | `/users/:userId/roles/:roleId` | Eliminar la asignación de un rol |
-| `GET` | `/roles` | Listar roles |
-| `GET` | `/roles/:id` | Obtener un rol por ID |
-| `POST` | `/roles` | Crear un rol |
-| `PATCH` | `/roles/:id` | Editar un rol |
+## Arquitectura
+
+La API sigue MVC con una capa de repositorio. Un request recorre las capas en este orden:
+
+1. **Rutas** (`src/routes`): método, path y validación del body.
+2. **Controladores** (`src/controllers`): leen params y body, llaman al servicio y arman el status y el JSON.
+3. **Servicios** (`src/services`): reglas de negocio, como existencia del recurso, nombre único y asignaciones.
+4. **Repositorios** (`src/repositories`): SQL contra SQLite.
+
+Cada capa está dividida por recurso (`roles` y `users`). Lo que comparten ambos queda en módulos aparte:
+
+
+| Carpeta           | Responsabilidad                                            |
+| ----------------- | ---------------------------------------------------------- |
+| `src/middlewares` | Autenticación, validación, not found, manejador de errores |
+| `src/schemas`     | Zod schemas de validación                                  |
+| `src/data`        | SQLite config e inicialización de db                       |
+| `src/interfaces`  | Types e interfaces de entidades                            |
+| `src/docs`        | Spec OpenApi / Swagger                                     |
+| `src/utils`       | Utilidades                                                 |
+
+
+
 
 ## Documentación
 
@@ -145,3 +178,4 @@ La documentación Swagger UI está disponible en `/docs`. Incluye los parámetro
 
 - **API:** pendiente de deploy
 - **Swagger UI:** pendiente de deploy (`/docs`)
+

@@ -1,0 +1,319 @@
+{
+  "info": {
+    "_postman_id": "a9d0eba0-b73f-4e7b-accb-7c1f35e36b37",
+    "name": "obel-challenge",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24451281"
+  },
+  "item": [
+    {
+      "name": "/users",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "authorization",
+              "type": "string"
+            },
+            {
+              "key": "value",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/users",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/users/:id/roles",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "authorization",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/users/1/roles",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "users",
+            "1",
+            "roles"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/users/:userId/roles/:roleId (assign role)",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "authorization",
+              "type": "string"
+            },
+            {
+              "key": "value",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/users/5/roles/3",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "users",
+            "5",
+            "roles",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/users/:userId/roles/:roleId (remove role)",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "authorization",
+              "type": "string"
+            },
+            {
+              "key": "value",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/users/1/roles/5",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "users",
+            "1",
+            "roles",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/roles",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "authorization",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/roles/",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "roles",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/roles/:id",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "authorization",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseURL}}/roles/1",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "roles",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/roles (create role)",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "authorization",
+              "type": "string"
+            },
+            {
+              "key": "value",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Admin\"\r\n    // \"description\": \"ROL con acceso global\",\r\n    // \"type\": \"system\",\r\n    // \"scope\": \"global\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/roles",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "roles"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/roles/:id (edit role)",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "authorization",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"administrador\",\r\n    \"description\": \"admin del sistema\",\r\n    \"type\": \"custom\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseURL}}/roles/2",
+          "host": [
+            "{{baseURL}}"
+          ],
+          "path": [
+            "roles",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": ""
+    }
+  ]
+}
