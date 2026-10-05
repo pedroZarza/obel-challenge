@@ -37,7 +37,7 @@ export const assignRole = async (req: Request, res: Response, next: NextFunction
         const statusCode = result === 1 ? 201 : 200
         res.status(statusCode).json({
             status: "success",
-            message: "Rol asignado",
+            message: result === 1 ? "Rol asignado correctamente" : "Rol ya asignado",
         })
         return;
     } catch (error) {
@@ -51,6 +51,7 @@ export const removeRole = async (req: Request, res: Response, next: NextFunction
         const roleId = Number(req.params.roleId)  
         const result = await removeRoleFromUser(userId, roleId)
         res.status(200).json({
+            "status": "success",
             removed: result === 1
         })
         return;

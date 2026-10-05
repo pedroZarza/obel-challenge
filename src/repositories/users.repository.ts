@@ -16,7 +16,7 @@ export const userRepository = {
         for (const user of users) {
             const assignments = db.prepare(`
             SELECT 
-            ur.role_id,
+            r.id,
             r.name
             FROM user_roles ur
             LEFT JOIN roles r ON r.id = ur.role_id

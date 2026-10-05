@@ -1,4 +1,4 @@
-import { HttpError } from "../utils/HttpErrors.js";
+import { HttpError } from "../utils/HttpErrors";
 import { Request, Response, NextFunction } from "express";
 
 

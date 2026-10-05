@@ -49,11 +49,11 @@ export const editRoleById = async (req: Request, res: Response, next: NextFuncti
     try {
         const { body } = req
         const roleId = Number(req.params.roleId)
-        const updatedId = await updateRoleById(roleId, body)
+        const updated = await updateRoleById(roleId, body)
         res.status(200).json({
             status: "success",
-            message: "updated",
-            id: updatedId,
+            message: updated === 1 ? "updated" : "no changes",
+            id: roleId,
             roleData: body
         })
         return;

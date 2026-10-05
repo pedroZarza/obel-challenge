@@ -1,12 +1,12 @@
 import express from "express";
 import morgan from "morgan";
 
-import { initializeDatabase } from "./data/init.js";
+import { initializeDatabase } from "./data/init";
 
-import routesIndex from "./routes/index.routes.js";
-import { errorHandler } from "./middlewares/errorHandler.js";
-import { notFound } from "./middlewares/notFoundRoute.js";
-import { auth } from "./middlewares/auth.js";
+import routesIndex from "./routes/index.routes";
+import { errorHandler } from "./middlewares/errorHandler";
+import { notFound } from "./middlewares/notFoundRoute";
+import { auth } from "./middlewares/auth";
 
 const app = express();
 initializeDatabase();

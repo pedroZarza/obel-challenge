@@ -34,6 +34,6 @@ export const rolesRepository = {
         UPDATE roles
         SET name = ?, description = ?, type = ?, scope = ?
         WHERE id = ?;`).run(updatedRole.name, updatedRole.description, updatedRole.type, updatedRole.scope, roleId)
-        return Number(update.lastInsertRowid)
+        return Number(update.changes) 
     }
 }

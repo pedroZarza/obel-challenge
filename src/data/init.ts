@@ -1,4 +1,5 @@
 import { db } from "./config/database";
+import { Role } from "../interfaces/interfaces";
 
 export function initializeDatabase(): void {
   db.exec(`
@@ -43,46 +44,46 @@ export function initializeDatabase(): void {
   }
 
 
-  const roles = [
-    {
-      id: 1,
-      name: "admin",
-      description: "Administrador del sistema",
-      type: "system",
-      scope: "global",
-    },
-    {
-      id: 2,
-      name: "editor",
-      description: "Editor de contenido",
-      type: "content",
-      scope: "content",
-    },
-  ];
+//   const roles: Role[] = [
+//     {
+//       id: 1,
+//       name: "admin",
+//       description: "Administrador del sistema",
+//       type: "system",
+//       scope: "global",
+//     },
+//     {
+//       id: 2,
+//       name: "editor",
+//       description: "Editor de contenido",
+//       type: "system",
+//       scope: "global",
+//     },
+//   ];
 
-  const insertRole = db.prepare(`
-  INSERT INTO roles (id, name, description, type, scope)
-  VALUES (?, ?, ?, ?, ?)
-  ON CONFLICT(id) DO NOTHING
-`);
+//   const insertRole = db.prepare(`
+//   INSERT INTO roles (id, name, description, type, scope)
+//   VALUES (?, ?, ?, ?, ?)
+//   ON CONFLICT(id) DO NOTHING
+// `);
 
-  for (const role of roles) {
-    insertRole.run(
-      role.id,
-      role.name,
-      role.description,
-      role.type,
-      role.scope
-    );
-  }
+//   for (const role of roles) {
+//     insertRole.run(
+//       role.id,
+//       role.name,
+//       role.description,
+//       role.type,
+//       role.scope
+//     );
+//   }
 
-  const insertAssignment = db.prepare(`
-  INSERT INTO user_roles (user_id, role_id)
-  VALUES (?, ?)
-  ON CONFLICT(user_id, role_id) DO NOTHING
-`);
+//   const insertAssignment = db.prepare(`
+//   INSERT INTO user_roles (user_id, role_id)
+//   VALUES (?, ?)
+//   ON CONFLICT(user_id, role_id) DO NOTHING
+// `);
 
-  insertAssignment.run(1, 1); // Pedro → admin
-  insertAssignment.run(1, 2); // Pedro → editor
-  insertAssignment.run(2, 2); // Alberto → editor
+//   insertAssignment.run(1, 1); // Pedro → admin
+//   insertAssignment.run(1, 2); // Pedro → editor
+//   insertAssignment.run(2, 2); // Alberto → editor
 }
